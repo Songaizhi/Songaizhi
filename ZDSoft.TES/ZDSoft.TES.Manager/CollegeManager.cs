@@ -8,5 +8,6 @@ namespace ZDSoft.TES.Manager
 {
     public class CollegeManager : ManagerBase<College>
     {
+        sdsd 
     }
 }
