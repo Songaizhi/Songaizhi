@@ -1,0 +1,65 @@
+﻿@using ZDSoft.TES.Web.Apps
+@model PageList<ZDSoft.TES.Domain.Student>
+@{
+    ViewBag.Title = "Management";
+    Layout = null;
+    <link href="@Url.Content("~/Content/css/ViewPage.css")" rel="stylesheet" type="text/css" />
+}
+<div style=" margin-top:110px;">
+<p>
+    @Html.ActionLink("返回列表", "Index", "Admin")
+</p>
+<!--查询区域-->
+@using (Html.BeginForm("UpLoad", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <input type="file" name="file" value="选择文件" />
+    <input type="submit" id="submit" value="导入" />
+}
+    @using (Html.BeginForm())
+    {
+        <p>
+            学生名：@Html.TextBox("Name")
+            <input type="submit" value="查询" class="btn3" />&nbsp;
+        </p>
+    }
+    <!--显示区域-->
+    <table cellpadding="0" cellspacing="0" class="dataGrid">
+        <tr>
+            <th>
+                用户名
+            </th>
+            <th>
+                学号
+            </th>
+            <th>
+                班级
+            </th>
+            <th>
+                操作
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.No
+                </td>
+                <td>
+                    @item.Classes.Name
+                </td>
+                <td>
+                    @Html.ActionLink("修改", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("详细信息", "Details", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </table>
+<!--分页区域-->
+<div class="pager">
+    @Html.Raw(Html.Pager(Model.PageIndex, Model.PageSize, Model.TotalCount, Model.PageIndex))
+</div>
+</div>

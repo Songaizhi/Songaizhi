@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B388F38F-C8D8-495A-927A-EE8031A960AB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ZDSoft.TES.Component</RootNamespace>
+    <AssemblyName>ZDSoft.TES.Component</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.ActiveRecord">
+      <HintPath>C:\Users\我是你爸爸\Desktop\2015-2016-2-1\资源\Demo\ZDSoft.LMS.Libs\Castle.ActiveRecord.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Services.Transaction">
+      <HintPath>C:\Users\我是你爸爸\Desktop\2015-2016-2-1\资源\Demo\ZDSoft.LMS.Libs\Castle.Services.Transaction.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>C:\Users\我是你爸爸\Desktop\2015-2016-2-1\资源\Demo\ZDSoft.LMS.Libs\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle">
+      <HintPath>C:\Users\我是你爸爸\Desktop\2015-2016-2-1\资源\Demo\ZDSoft.LMS.Libs\NHibernate.ByteCode.Castle.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Search">
+      <HintPath>C:\Users\我是你爸爸\Desktop\2015-2016-2-1\资源\Demo\ZDSoft.LMS.Libs\NHibernate.Search.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseComponent.cs" />
+    <Compile Include="CollegeComponent.cs" />
+    <Compile Include="CurriculumComponent.cs" />
+    <Compile Include="FunctionComponent.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QManagementComponent.cs" />
+    <Compile Include="ResultPapersComponent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ResultSelectsComponent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RoleComponent.cs" />
+    <Compile Include="StudentComponent.cs" />
+    <Compile Include="TeacherComponent.cs" />
+    <Compile Include="TempPaperTypeComponent.cs" />
+    <Compile Include="TempSelectsComponent.cs" />
+    <Compile Include="TempTopicComponent.cs" />
+    <Compile Include="UserClassComponent.cs" />
+    <Compile Include="UsersComponent.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ZDSoft.TES.Domain\ZDSoft.TES.Domain.csproj">
+      <Project>{DF2E89A9-C20D-4001-9492-1C3C175C8990}</Project>
+      <Name>ZDSoft.TES.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZDSoft.TES.Manager\ZDSoft.TES.Manager.csproj">
+      <Project>{575C25F5-C63B-4429-8583-9898E572BC45}</Project>
+      <Name>ZDSoft.TES.Manager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZDSoft.TES.Service\ZDSoft.TES.Service.csproj">
+      <Project>{37D85B7F-98E4-484E-A2A8-B988EACD4263}</Project>
+      <Name>ZDSoft.TES.Service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

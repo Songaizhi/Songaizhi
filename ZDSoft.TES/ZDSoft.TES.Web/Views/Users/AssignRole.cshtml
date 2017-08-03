@@ -1,0 +1,75 @@
+﻿@model ZDSoft.TES.Domain.Users
+@{
+    ViewBag.Title = "AssignRole";
+    Layout = null;
+    <link href="@Url.Content("~/Content/css/ViewPage.css")" rel="stylesheet" type="text/css" />
+    var roleList = ViewBag.RoleList as IList<ZDSoft.TES.Domain.Role>;
+    var roleListId = "";
+}
+<div style=" margin-top:70px;">
+<p>
+    <h3>@Html.ActionLink("返回列表", "Index", "Users")</h3>
+</p>
+<br />
+<fieldset>
+    <legend>配置角色</legend>
+    <table cellpadding="0" cellspacing="0" class="dataGrid">
+        <tr>
+            <th>
+                用户名
+            </th>
+            <th>
+                账号
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(m => m.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(m => m.Account)
+            </td>
+        </tr>
+    </table>
+    <br />
+    @using (Html.BeginForm())
+    {
+        @Html.Hidden("userId", Model.ID)
+        <table cellpadding="0" cellspacing="0" class="dataGrid" id="tbRoles">
+            <tr>
+                <th>
+                    @Html.CheckBox("checkAll") 选择
+                </th>
+                <th>
+                    角色名称
+                </th>
+            </tr>
+            @foreach (var item in roleList)
+            {
+                <tr>
+                    <td>
+                        @Html.CheckBox(item.ID.ToString(), item.IsChecked, new { @RoleID = item.ID })
+                        @{
+                   if (item.IsChecked)
+                   {
+                       roleListId += "," + item.ID + ",";
+                   }
+                        
+                        }
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                </tr>
+            }
+        </table>  
+
+        <br />
+        <input type="text" id="hdSelectedIds" name="hdSelectedIds" value="@roleListId" />
+        <br />
+        <p>
+            <input type="submit" value="保存" class="btn3" onclick="CheckSelectedRoles()" />
+        </p>
+    }
+</fieldset>
+</div>

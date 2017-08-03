@@ -1,0 +1,31 @@
+﻿@model ZDSoft.TES.Domain.TempPaperType
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+    <link href="@Url.Content("~/Content/css/ViewPage.css")" rel="stylesheet" type="text/css" />
+}
+
+<fieldset>
+    <div class="display-field">@Model.Name</div>
+    <table >
+    @for (int i = 0; i <= Model.TempPaperTypeList.Count - 1; i++)
+    {   <tr>
+          <td> <span>@Model.TempPaperTypeList[i].Name</span></td> 
+       
+         <td><span>权重</span> <span>@Model.TempPaperTypeList[i].Proportion</span></td> 
+       </tr>
+        for (int k = 0; k <= Model.TempPaperTypeList[i].TempSelectsList.Count - 1; k++)
+        { <tr>
+          <td><span>选项 @Model.TempPaperTypeList[i].TempSelectsList[k].Number</span></td> <td><span>@Model.TempPaperTypeList[i].TempSelectsList[k].Name</span> </td>
+        <td><span>权重 @Model.TempPaperTypeList[i].TempSelectsList[k].Proportion</span></td>
+        </tr>
+         
+        }
+    }
+    </table>
+</fieldset>
+<p>
+    @Html.ActionLink("返回首页", "Index")
+</p>
+

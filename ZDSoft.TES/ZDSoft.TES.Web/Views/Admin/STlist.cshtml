@@ -1,0 +1,53 @@
+﻿@using ZDSoft.TES.Web.Apps
+@model ZDSoft.TES.Web.Apps.PageList<ZDSoft.TES.Domain.ResultPapers>
+@{
+    Dictionary<int, ZDSoft.TES.Domain.Student> Createusers = ViewBag.Createusers as Dictionary<int, ZDSoft.TES.Domain.Student>;
+    Dictionary<int, ZDSoft.TES.Domain.Teacher> users = ViewBag.users as Dictionary<int, ZDSoft.TES.Domain.Teacher>;
+    Dictionary<int, ZDSoft.TES.Domain.Teacher> Createtea = ViewBag.Createtea as Dictionary<int, ZDSoft.TES.Domain.Teacher>;
+    Layout = null;
+  }
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+ .name{ display:block; width:20%; height:30px; float:left; border:1px solid #000;text-align:center;}
+ .semester{ display:block; width:20%; height:30px;float:left; border:1px solid #000;text-align:center;}
+ .creatUserID{ display:block; width:15%; height:30px;float:left; border:1px solid #000;text-align:center;}
+ .userID{ display:block; width:15%; height:30px;float:left; border:1px solid #000;text-align:center;}
+ .time{ display:block; width:20%; height:30px;float:left; border:1px solid #000;text-align:center;}
+ .proportion{ display:block; width:9%; height:30px;float:left; border:1px solid #000;text-align:center;}
+ .creatUserIDa{display:block; width:15%; height:30px;float:left; border:1px solid #000; text-align:center;}
+ .userIDa{display:block; width:15%; height:30px;float:left; border:1px solid #000;text-align:center;}
+</style>
+</head>
+<body>
+
+<div>
+<span class="name">试卷名</span>
+<span class="semester">学期</span>
+<span class="creatUserID">评教者</span>
+<span class="userID">被评者</span>
+<span class="time">评教时间</span>
+<span class="proportion">分数</span> 
+@foreach (ZDSoft.TES.Domain.ResultPapers rp in Model) 
+{ 
+    <span class="name">@rp.Name</span>
+    <span class="semester">@rp.Semester</span>
+    if (Createusers.ContainsKey(rp.CreateUserID))
+    {
+    <a href="../Student/Details?id=@Createusers[@rp.CreateUserID].ID" target="_blank" class="creatUserIDa">@Createusers[@rp.CreateUserID].Name </a>
+    }
+    else 
+    {
+    <a href="../Teacher/Details?id=@Createtea[@rp.CreateUserID].ID" target="_blank" class="creatUserIDa">@Createtea[@rp.CreateUserID].Name </a>
+    }
+    <a href="../Teacher/Details?id=@users[@rp.UserID].ID" target="_blank" class="userIDa">@users[@rp.UserID].Name </a>
+    <span class="time">@rp.Time </span>
+    <span class="proportion">@rp.Proportion </span>
+}
+</div>
+ <div class="pager">
+    @Html.Raw(Html.Pager(Model.PageIndex, Model.PageSize, Model.TotalCount, Model.PageIndex))
+</div>
+</body>
+ </html>

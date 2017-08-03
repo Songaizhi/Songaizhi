@@ -1,0 +1,200 @@
+﻿
+@model IList<ZDSoft.TES.Domain.Function>
+@{
+    Layout = null;
+    ZDSoft.TES.Domain.Users user = ViewBag.user as ZDSoft.TES.Domain.Users;
+  }
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>功能菜单</title>
+    <link href="@Url.Content("~/Content/css/Homestyle.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-2.1.1.min.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/css/styles.css")" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div style=" height:45px; width:200px; line-height:45px; position:absolute;  right:0; top:0px; color:#FFF;font-size:25px; font-weight:bold;"> 
+欢迎~ &nbsp @user.Name
+</div>
+    <div class="htmleaf-container">
+        <div id='ss_menu'>
+            <div>
+                <i class="fa fa-qq" onclick="location.assign(location)" style="font-size: 17px; color: Black;">
+                    刷新</i>
+            </div>
+            <div>
+                <i class="fa fa-weibo" onclick="return zhuxiao()" style="font-size: 17px; color: Black;">
+                    注销</i>
+            </div>
+            <div>
+                <i class="fa fa-weixin" style="font-size: 17px; color: Black;">帮助</i>
+            </div>
+            <div>
+                <i class="fa fa-renren" onclick="return fanhui()" style="font-size: 17px; color: Black;">
+                    返回首页</i>
+            </div>
+            <div class='menu'>
+                <div class='share' id='ss_toggle' data-rot='180'>
+                    <div class='circle'>
+                    </div>
+                    <div class='bar'>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navBar">
+        <ul class="nav clearfix">
+            @if (ViewBag.PrivilegeList == null)
+            {
+                Response.Redirect(@Url.Content("~/Users/Login.cshtml"));
+                Response.End();
+            }
+            @{
+                var a = ViewBag.PrivilegeList as IList<ZDSoft.TES.Domain.Function>;
+                foreach (var s in a.Where(m => m.Parents == null))
+                {
+                <li class="m">
+                    <h3>
+                        <a href="#">@s.SystemFunctionName</a></h3>
+                    @{
+                               if (s.Children.Count > 0)
+                               {
+                        <ul class="sub">
+                            @foreach (var item in s.Children)
+                            {
+                                <li>
+                                    @Html.ActionLink(item.SystemFunctionName, item.ActionName, item.ControllerName)
+                                </li>
+                            }
+                        </ul>
+                               }
+                    }
+                </li>
+                 
+
+                }
+          
+            }
+            <li class="block" style="left: 251px;"></li>
+        </ul>
+    </div>
+    <div id="c_Main" style="overflow: auto;">
+    </div>
+
+
+<iframe name="if1" src="Admin/Teacherstatistics" scrolling="no"; frameborder="0";  style="height: 400px; width:49%; float:left; border:1px solid #000;"></iframe>
+<iframe name="if2" src="Admin/Studentstatistics" scrolling="no"; frameborder="0";  style="height: 400px; width:49%; float:right; border:1px solid #000;"></iframe>
+<form action="Admin/DetailedFind" target="frmright" style="width:100%;text-align:center; height:50px; clear:both; line-height:50px;">
+<select name="xueqi">
+<option >第一学期</option>
+</select>
+教师：<input name="jiaoshi" type="text" />
+学生：<input name="xuesheng" type="text" />
+<input type="submit"  value="查询"/>
+</form>
+
+<iframe name="frmright" src="Admin/STlist" scrolling="no"; frameborder="0"; style="height:450px; width:100%; border:1px solid #000; margin-top:10px;"></iframe>
+
+    <script src="../../Scripts/SuperSlide.2.1.js" type="text/javascript"></script>
+    <script src="../../Scripts/zzsc.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function (ev) {
+            var toggle = $('#ss_toggle');
+            var menu = $('#ss_menu');
+            var rot;
+            $('#ss_toggle').on('click', function (ev) {
+                rot = parseInt($(this).data('rot')) - 180;
+                menu.css('transform', 'rotate(' + rot + 'deg)');
+                menu.css('webkitTransform', 'rotate(' + rot + 'deg)');
+                if (rot / 180 % 2 == 0) {
+                    toggle.parent().addClass('ss_active');
+                    toggle.addClass('close');
+                } else {
+                    toggle.parent().removeClass('ss_active');
+                    toggle.removeClass('close');
+                }
+                $(this).data('rot', rot);
+            });
+            menu.on('transitionend webkitTransitionEnd oTransitionEnd', function () {
+                if (rot / 180 % 2 == 0) {
+                    $('#ss_menu div i').addClass('ss_animate');
+                } else {
+                    $('#ss_menu div i').removeClass('ss_animate');
+                }
+            });
+        });
+
+        //配置角色
+        $(function () {
+            $("#checkAll").change(function () {
+                //实现全选或取消
+                var status = $(this).attr("checked"); //获取当前的选择状态
+                $("#tbRoles").find("input:checkbox").each(function () {
+                    $(this).attr("checked", status);
+                });
+
+                //将选择值存放到隐藏文本框中,存值规则为用,隔开每个ID
+                var roleList = "";
+                $("#tbRoles").find("input:checkbox").each(function () {
+                    if ($(this).attr("id") != "checkAll") {//排除全选控件
+                        if ($(this).attr("checked")) {
+                            roleList = roleList + "," + $(this).attr("RoleID") + ","
+                        }
+                    }
+                });
+
+                //将字符串赋值给文本框保存
+                $("#hdSelectedIds").val(roleList);
+            });
+
+            //单个选择
+            $("#tbRoles").find("input:checkbox[name!=checkAll]")
+        .change(function () {
+            var hdSelectedIds = $("#hdSelectedIds").val(); //获取隐藏文本框的roleID
+            var curId = "," + $(this).attr("RoleID") + ","; //获取当前的ID
+
+            //如果当前处于选中状态
+            if ($(this).attr("checked")) {
+                if (hdSelectedIds.indexOf(curId) == -1) { //如果不存在，则字符串叠加
+                    hdSelectedIds += curId;
+                }
+            }
+            else { //如果是取消状态
+                hdSelectedIds = hdSelectedIds.replace(curId, "");
+            }
+
+            //给控件重新赋值
+            $("#hdSelectedIds").val(hdSelectedIds);
+        });
+        });
+        //提交之前选择角色
+        function CheckSelectedRoles() {
+            if ($("#hdSelectedIds").val() == "," || $("#hdSelectedIds").val() == "") {
+                if (confirm("不打算配置角色吗?")) {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        function zhuxiao() {
+            if (!confirm("是否确定注销？")) {
+                return false;
+            }
+            window.location.href = "../Users/Login";
+            return true;
+        }
+
+        function fanhui() {
+            if (!confirm("是否确定返回到首页？")) {
+                return false;
+            }
+            window.location.href = "../Users/Login";
+            return true;
+        }
+    </script>
+</body>
+</html>
+

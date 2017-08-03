@@ -1,0 +1,138 @@
+
+/*
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+*/
+*
+{
+    margin:0 auto;
+    padding:0 auto;
+    }
+body {
+	margin: 20px;
+	padding: 0;
+	background: #D4D4D4 url(../images/Index/img1.gif);
+	font-family: "Comic Sans MS", Arial, Helvetica, sans-serif;
+	color: #704B3A;
+}
+
+h1, h2, h3, h4, h5, h6,ul,li, form{
+	margin: 0;
+	padding: 0;
+	list-style:none;
+}
+
+a {
+	background: url(../images/Index/img10.gif) repeat-x left bottom;
+	text-decoration: none;
+	color: #6157E4;
+}
+
+a:hover {
+	background-image: none;
+}
+
+.content ul {
+	margin-top: 0;
+	list-style:none;
+}
+
+/* Teal Notes */
+
+.tealnotes {
+}
+
+/* Yellow Notes */
+
+
+/* Green Notes */
+
+.greennotes {
+	margin-bottom: 20px;
+	background: #AEE63F url(../images/Index/img4.gif) no-repeat left bottom;
+}
+
+.greennotes .heading {
+	height: 50px;
+	padding: 10px;
+	background: url(../images/Index/img5.gif) repeat-x left center;
+}
+
+.greennotes .content {
+	padding: 0 20px 60px 20px;
+}
+
+/* Header */
+
+#header {
+	width: 720px;
+	height: 100px;
+	padding: 20px;
+	background: #5BCE9E url(../images/Index/img8.gif) no-repeat left bottom;
+	margin-left:80px;
+	
+}
+
+#header h1, #header h2 {
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+#header a {
+	background: none;
+}
+
+/* Pages */
+
+
+
+#content {
+	width: 100%;
+
+	margin-left:180px;
+	
+}
+
+
+
+/* Search */
+
+#search {
+	float: right;
+	width: 250px;
+}
+
+#search .content {
+	padding-bottom: 100px;
+}
+
+/* Archives */
+
+#archives {
+	clear: right;
+	float: right;
+	width: 310px;
+	float:left;
+	height:290px;
+	line-height:20px;
+	font-size:14px;
+	margin-right:110px;
+	margin-top:5px;
+	list-style:none;
+	}
+
+/* Categories */
+
+#categories {
+	clear: right;
+	float: right;
+	width: 250px;
+}
+
+/* Blogroll */
+
+
+/* Footer */
+

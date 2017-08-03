@@ -1,0 +1,42 @@
+﻿@model ZDSoft.TES.Domain.TempPaperType
+
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+<div>
+    @Html.ActionLink("返回主界面", "Index","Admin")
+</div>
+
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <div class="editor-field">
+             试卷名称: @Html.TextBox("shijuan","", new { @calss = "name" })
+        </div>
+
+        <div class="editor-label" style="margin-bottom:5px">
+            指标名称 @Html.TextBox("zhibiao", "", new { @class = "zhibiao" })&nbsp 权重  @Html.TextBox("quznhong", "", new { @class = "quznhong" })<br />
+        </div>
+       <div style="margin-bottom:5px">
+选项 &nbsp A @Html.TextBox("xuanA", "")<br />&nbsp 权重  @Html.TextBox("quznhong1", "", new { @class = "quznhong1" })<br />
+</div>
+<div style="margin-bottom:5px">
+
+选项 &nbsp B @Html.TextBox("xuanb", "")<br />&nbsp 权重  @Html.TextBox("quznhong1", "", new { @class = "quznhong" })<br />
+</div>
+<div style="margin-bottom:5px">
+选项 &nbsp C @Html.TextBox("xuanc", "")<br />&nbsp 权重  @Html.TextBox("quznhong1", "", new { @class = "quznhong" })<br />
+</div>
+<div style="margin-bottom:5px">
+选项 &nbsp D @Html.TextBox("xuand", "")<br />&nbsp 权重  @Html.TextBox("quznhong1", "", new { @class = "quznhong" })<br />
+</div>
+
+        <p>
+            <input type="submit" value="保存" />
+        </p>
+    </fieldset>
+}
+

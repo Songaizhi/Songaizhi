@@ -1,0 +1,38 @@
+﻿.dataGrid
+{
+    border: 1px solid #007ea2;
+    background-color: #DFF2FF;
+    width:95%;
+}
+
+
+.dataGrid th
+{
+    color: #007ea2;
+    background-color: #B3E1F9;
+    border-bottom:1px solid #007ea2;
+    height: 25px;
+    font-size: 9pt;
+}
+
+.dataGrid tr:hover
+{
+    background-color: #B3E1F9;
+}
+
+.dataGrid td
+{
+    border-bottom: 1px solid #D4D0C8;
+    height: 25px;
+    text-align: center;
+    padding: 0 5px 0 5px;
+    font-size: 9pt;
+}
+
+.btn3
+{
+    background-image: url('../images/but3.gif');
+    background-repeat: no-repeat;
+    width: 61px;
+    height: 21px;
+}

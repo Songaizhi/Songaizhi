@@ -1,0 +1,73 @@
+﻿@model ZDSoft.TES.Domain.QManagement
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Create</title>
+</head>
+<body>
+    <script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <legend>问卷</legend>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Name)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.QSTime)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.QSTime)
+                @Html.ValidationMessageFor(model => model.QSTime)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SDTime)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.SDTime)
+                @Html.ValidationMessageFor(model => model.SDTime)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ISActive)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ISActive)
+                @Html.ValidationMessageFor(model => model.ISActive)
+            </div>
+    <div class="editor-field">
+           <span>学生</span>@Html.RadioButton("deliveryTypeId", 1, (Model.Syst == ZDSoft.TES.Domain.Sys.Student ? true : false))
+           <span>教师</span>@Html.RadioButton("deliveryTypeId", 2, (Model.Syst == ZDSoft.TES.Domain.Sys.Teacher ? true : false))
+           <span>系主任</span>@Html.RadioButton("deliveryTypeId", 3, (Model.Syst == ZDSoft.TES.Domain.Sys.Xixhuren ? true : false))
+           <span>教研室</span>@Html.RadioButton("deliveryTypeId", 4, (Model.Syst == ZDSoft.TES.Domain.Sys.Jiaoyanshi ? true : false))
+
+        </div>
+
+            <p>
+                <input type="submit" value="保存" />
+            </p>
+        </fieldset>
+    }
+    
+    <div>
+        @Html.ActionLink("返回列表", "Index")
+    </div>
+</body>
+</html>
+

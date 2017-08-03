@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<root>
+    <element Id="IUsersService"
+             Service="ZDSoft.TES.Service.IUsersService, ZDSoft.TES.Service"
+             Class="ZDSoft.TES.Component.UsersComponent, ZDSoft.TES.Component">
+    </element>
+  
+
+  <element Id="IRoleService"
+         Service="ZDSoft.TES.Service.IRoleService, ZDSoft.TES.Service"
+         Class="ZDSoft.TES.Component.RoleComponent, ZDSoft.TES.Component">
+  </element>
+
+
+  <element Id="IResultPapersService"
+         Service="ZDSoft.TES.Service.IResultPapersService, ZDSoft.TES.Service"
+         Class="ZDSoft.TES.Component.ResultPapersComponent, ZDSoft.TES.Component">
+  </element>
+
+
+  <element Id="IResultSelectsService"
+         Service="ZDSoft.TES.Service.IResultSelectsService, ZDSoft.TES.Service"
+         Class="ZDSoft.TES.Component.ResultSelectsComponent, ZDSoft.TES.Component">
+  </element>
+
+
+  <element Id="IResultTopicService"
+         Service="ZDSoft.TES.Service.IResultTopicService, ZDSoft.TES.Service"
+         Class="ZDSoft.TES.Component.ResultTopicComponent, ZDSoft.TES.Component">
+  </element>
+  
+  <element Id="ICollegeService"
+       Service="ZDSoft.TES.Service.ICollegeService, ZDSoft.TES.Service"
+       Class="ZDSoft.TES.Component.CollegeComponent, ZDSoft.TES.Component">
+  </element>
+
+  
+  
+  <element Id="IUserClassService"
+     Service="ZDSoft.TES.Service.IUserClassService, ZDSoft.TES.Service"
+     Class="ZDSoft.TES.Component.UserClassComponent, ZDSoft.TES.Component">
+  </element>
+
+
+  <element Id="ITempTopicService"
+     Service="ZDSoft.TES.Service.ITempTopicService, ZDSoft.TES.Service"
+     Class="ZDSoft.TES.Component.TempTopicComponent, ZDSoft.TES.Component">
+  </element>
+
+
+  <element Id="ITempSelectsService"
+     Service="ZDSoft.TES.Service.ITempSelectsService, ZDSoft.TES.Service"
+     Class="ZDSoft.TES.Component.TempSelectsComponent, ZDSoft.TES.Component">
+  </element>
+
+
+  <element Id="ITempPaperTypeService"
+     Service="ZDSoft.TES.Service.ITempPaperTypeService, ZDSoft.TES.Service"
+     Class="ZDSoft.TES.Component.TempPaperTypeComponent, ZDSoft.TES.Component">
+  </element>
+
+  <element Id="IFunctionService"
+     Service="ZDSoft.TES.Service.IFunctionService, ZDSoft.TES.Service"
+     Class="ZDSoft.TES.Component.FunctionComponent, ZDSoft.TES.Component">
+  </element>
+
+  <element Id="ITeacherService"
+   Service="ZDSoft.TES.Service.ITeacherService, ZDSoft.TES.Service"
+   Class="ZDSoft.TES.Component.TeacherComponent, ZDSoft.TES.Component">
+  </element>
+
+  <element Id="IStudentService"
+ Service="ZDSoft.TES.Service.IStudentService, ZDSoft.TES.Service"
+ Class="ZDSoft.TES.Component.StudentComponent, ZDSoft.TES.Component">
+  </element>
+
+  <element Id="ICurriculumService"
+ Service="ZDSoft.TES.Service.ICurriculumService, ZDSoft.TES.Service"
+ Class="ZDSoft.TES.Component.CurriculumComponent, ZDSoft.TES.Component">
+  </element>
+
+  <element Id="IQManagementService"
+ Service="ZDSoft.TES.Service.IQManagementService, ZDSoft.TES.Service"
+ Class="ZDSoft.TES.Component.QManagementComponent, ZDSoft.TES.Component">
+  </element>
+
+</root>

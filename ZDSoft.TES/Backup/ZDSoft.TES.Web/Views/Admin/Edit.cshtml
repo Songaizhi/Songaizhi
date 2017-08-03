@@ -1,0 +1,65 @@
+﻿@model ZDSoft.TES.Domain.TempPaperType
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = null;
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset style="background-color:#7AC5CD">
+    <center>
+        <div class="editor-field">
+           <span> @Html.TextBox("Name", Model.Name, new { @calss = "Name", style = "width:200px;" })</span> 
+        </div></center>
+        </fieldset>
+    <div style="margin-bottom:10px">
+    <div class="editor-label">
+           <span>修试题名称以及子集指标</span>
+        </div>
+        @for (int i = 0; i <= Model.TempPaperTypeList.Count-1; i++)
+        {
+        <div class="editor-field">
+            @Html.TextBox("namet", @Model.TempPaperTypeList[i].Name, new { @calss = "namet", style = "width:160px;" })
+           
+           <span>权重</span>
+            @Html.TextBox("quanzhong1", @Model.TempPaperTypeList[i].Proportion, new { @calss = "quanzhong1", style = "width:70px" })<br />
+            <span style="background-color:#7FFFD4;">所属试卷修改填写1~~~~5数字(1学生用表 2 教师用表 3 系主任用表 4 教研室用表)</span>
+            @Html.TextBox("IDq", @Model.TempPaperTypeList[i].TempPaperType.ID, new { @calss = "IDq", style = "width:70px" })<br />
+
+               <span style="background-color:#7FFFD4;">请填写试卷所属角色填写1~~~~5数字(1学生 2 教师 3 系主任 4 教研室)</span>
+            @Html.TextBox("IDe", @Model.ResultPapers.ID, new { @calss = "IDe", style = "width:70px" })
+        
+        </div>
+            for (int k = 0; k <= Model.TempPaperTypeList[i].TempSelectsList.Count - 1; k++)
+            {
+            <div>
+            <span>选项</span>
+            <span>@Model.TempPaperTypeList[i].TempSelectsList[k].Number</span>
+              @Html.TextBox("name", @Model.TempPaperTypeList[i].TempSelectsList[k].Name, new { @calss = "name", style = "width:270px" })
+
+           <span>权重</span>
+              @Html.TextBox("quanzhong", @Model.TempPaperTypeList[i].TempSelectsList[k].Proportion, new { @calss = "quanzhong", style = "width:70px" })
+        
+
+
+            </div>}
+             <br />}
+</div>
+        @Html.HiddenFor(model => model.ID)
+        <input type="submit" value="保存" />
+       
+}
+<div>
+    @Html.ActionLink("返回首页", "Index")
+</div>
+
+<style type="text/css">
+.text-box single-line
+{
+    width:200px;
+    
+    }
+</style>
+

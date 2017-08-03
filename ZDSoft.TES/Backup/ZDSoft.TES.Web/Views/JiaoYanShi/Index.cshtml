@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ZDSoft.TES.Domain.Teacher>
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <title>Particleground demo</title>
+    <style>
+        .menu
+        {
+            position: relative;
+        }
+        
+        .menu imag
+        {
+            display: none;
+        }
+        
+        .m:hover img
+        {
+            display: block;
+            position: absolute;
+            left: 0px;
+            top: 21px;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/Teacher.css")" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.11.1.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.particleground.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/demo.js")"></script>
+    <script type="text/javascript">
+        function MM_over(mmObj) {
+            var mSubObj = mmObj.getElementsByTagName("div")[0];
+            mSubObj.style.display = "block";
+
+        }
+        function MM_out(mmObj) {
+            var mSubObj = mmObj.getElementsByTagName("div")[0];
+            mSubObj.style.display = "none";
+
+        }
+
+
+        function mon(a) {
+            var jieQuery = a.src.substr(a.src.length - 5, 1);
+            a.src = a.src.substring(0, a.src.length - 4) + jieQuery + ".png";
+
+        }
+        function mout(a) {
+            a.src = a.src.substring(0, a.src.length - 5) + ".png";
+        }
+
+    </script>
+</head>
+<body>
+    <div id="particles">
+        <div class="intro"><h2 style=" font:inherit; font-size:50px; letter-spacing:0.015em; font-weight:700; text-transform:uppercase;">请选择您要评价的教师</h2>
+            @foreach (var tea in Model)
+            { 
+                <div style=" margin-left:263px;">
+                <a href="../Paper/JiaoYanShiPaper?teacher=@tea.ID&&userid=@tea.Teachers.ID" target="_blank" onmouseover="MM_over(this)" onmouseout="MM_out(this)"
+                    style="width: 113px; height: 290px; position: relative; float: left; margin-right: 50px;
+                    text-decoration: none;">
+                    <img src="@tea.Headportrait" width="113" height="189" style=" margin-top:100px;" onmouseover="mon(this)" onmouseout="mout(this)" />
+                    <div style="display: none; position: absolute; left: 0; top: 0px; z-inde: 5;">
+                        <img src="@Url.Content("~/Content/images/Teacher/k1.png")" width="183" height="90" />
+                        <div style="top: 20px; position: absolute; z-index: 2; color: White; margin-left: 5px;">@tea.Spask
+                        </div>
+                    </div>
+                    <div>
+                        <p style="color: White;">@tea.Name</p>
+                    </div>
+                </a>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,88 @@
+﻿@using ZDSoft.TES.Web.Apps
+@model PageList<ZDSoft.TES.Domain.QManagement>
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+    <link href="@Url.Content("~/Content/css/ViewPage.css")" rel="stylesheet" type="text/css" />
+}
+<p>
+    @Html.ActionLink("返回列表", "Index", "Admin")
+</p>
+
+<p>
+    @Html.ActionLink("新建问卷", "Create")
+</p>
+<table cellpadding="0" cellspacing="0" class="dataGrid">
+    <tr>
+        <th>
+            问卷名称
+        </th>
+        <th>
+            问卷评选时间
+        </th>
+        <th>
+            评选截止时间
+        </th>
+        <th>
+            是否激活
+        </th>
+        <th>
+            问卷类型
+        </th>
+        <th>
+            指标类型
+        </th>
+        <th>
+            操作
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @String.Format("{0:g}", item.QSTime)
+            </td>
+            <td>
+                @String.Format("{0:g}", item.SDTime)
+            </td>
+            <td>
+                @{
+           if (item.ISActive)
+           {
+                    @:已激活
+                    }
+           else
+           {
+                    @:未激活
+              }
+                }
+            </td>
+            <td>@item.Tpt.ResultPapers.Name
+            </td>
+            <td>@item.Tpt.Name
+            </td>
+            <td>
+                @Html.ActionLink("编辑", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("详细信息", "Details", new { id = item.ID }) |
+                @Html.ActionLink("删除", "Delete", new { id = item.ID }) |
+                @{
+           if (item.ISActive)
+           {
+                    @Html.ActionLink("注销", "SwitchStatus", new { id = item.ID }, new { onclick = "return confirm('你要注销吗？')" })
+
+           }
+           else
+           {
+                    @Html.ActionLink("激活", "SwitchStatus", new { id = item.ID }, new { onclick = "return confirm('真的打算激活吗？')" })
+           }
+                }
+            </td>
+        </tr>
+    }
+</table>
+<div class="pager">
+    @Html.Raw(Html.Pager(Model.PageIndex, Model.PageSize, Model.TotalCount, Model.PageIndex))
+</div>

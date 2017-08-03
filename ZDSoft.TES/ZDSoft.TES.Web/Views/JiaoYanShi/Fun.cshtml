@@ -1,0 +1,137 @@
+﻿@model IEnumerable<ZDSoft.TES.Domain.Function>
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>欢迎进入评价系统</title>
+    <script>        window.jQuery || document.write('<script src="js/jquery-2.1.1.min.js"><\/script>')</script>
+    <script src="@Url.Content("~/Scripts/jquery-2.1.1.min.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/css/styles.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css/base.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css/buttons.css")" rel="stylesheet" type="text/css" />
+    <style>
+        *
+        {
+            margin: 0;
+            padding: 0;
+        }
+        #top
+        {
+            height: 500px;
+            width: 100%;
+        }
+        #bottom
+        {
+            height: 200px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="top" src="../JiaoYanShi/Index" frameborder="0"></iframe>
+    <div class="htmleaf-container">
+        <div id='ss_menu'>
+            <div>
+                <i class="fa fa-qq" onclick="location.assign(location)" style="font-size: 17px;">刷新</i>
+            </div>
+            <div>
+                <i class="fa fa-weibo" onclick="return zhuxiao()" style="font-size: 17px;">注销</i>
+            </div>
+            <div>
+                <i class="fa fa-weixin" style="font-size: 17px;">帮助</i>
+            </div>
+            <div>
+                <i class="fa fa-renren" onclick="return fanhui()" style="font-size: 17px;">返回首页</i>
+            </div>
+            <div class='menu'>
+                <div class='share' id='ss_toggle' data-rot='180'>
+                    <div class='circle'>
+                    </div>
+                    <div class='bar'>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="bottom">
+        <div class="box bg-2">
+            @{
+                var a = ViewBag.PrivilegeList as IList<ZDSoft.TES.Domain.Function>;
+                foreach (var s in a.Where(m => m.Parents != null))
+                {
+                <a href="../Users/ChangePassword">
+                    <button class="button button--nanuk button--round-l button--text-thick button--inverted">
+                        <span>@s.SystemFunctionName</span>
+                    </button>
+                </a>
+@*                         if (s.Children.Count > 0)
+                         {
+                             foreach (var item in s.Children)
+                             {
+                @Html.ActionLink(item.SystemFunctionName, item.ActionName, item.ControllerName)
+                             }
+                         }*@
+                }
+            }
+        </div>
+        <script type="text/javascript">
+            (function () {
+                var isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
+                if (isSafari) {
+                    document.getElementById('support-note').style.display = 'block';
+                }
+            })();
+        </script>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function (ev) {
+        var toggle = $('#ss_toggle');
+        var menu = $('#ss_menu');
+        var rot;
+        $('#ss_toggle').on('click', function (ev) {
+            rot = parseInt($(this).data('rot')) - 180;
+            menu.css('transform', 'rotate(' + rot + 'deg)');
+            menu.css('webkitTransform', 'rotate(' + rot + 'deg)');
+            if (rot / 180 % 2 == 0) {
+                toggle.parent().addClass('ss_active');
+                toggle.addClass('close');
+            } else {
+                toggle.parent().removeClass('ss_active');
+                toggle.removeClass('close');
+            }
+            $(this).data('rot', rot);
+        });
+        menu.on('transitionend webkitTransitionEnd oTransitionEnd', function () {
+            if (rot / 180 % 2 == 0) {
+                $('#ss_menu div i').addClass('ss_animate');
+            } else {
+                $('#ss_menu div i').removeClass('ss_animate');
+            }
+        });
+    });
+    var pcwidth = window.screen.width;
+
+    function zhuxiao() {
+        if (!confirm("是否确定注销？")) {
+            return false;
+        }
+        window.location.href = "../Users/Login";
+        return true;
+    }
+
+    function fanhui() {
+        if (!confirm("是否确定返回到首页？")) {
+            return false;
+        }
+        window.location.href = "../Users/Login";
+        return true;
+    }
+
+</script>
+

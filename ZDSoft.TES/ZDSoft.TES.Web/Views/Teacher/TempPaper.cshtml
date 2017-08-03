@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ZDSoft.TES.Domain.Teacher>
+
+@{
+    ViewBag.Title = "TempPaper";
+}
+
+<h2>TempPaper</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            Name
+        </th>
+        <th>
+            Number
+        </th>
+        <th>
+            Spask
+        </th>
+        <th>
+            Headportrait
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+        <td>
+            @item.Name
+        </td>
+        <td>
+            @item.Number
+        </td>
+        <td>
+            @item.Spask
+        </td>
+        <td>
+            @item.Headportrait
+        </td>
+    </tr>
+}
+
+</table>
+

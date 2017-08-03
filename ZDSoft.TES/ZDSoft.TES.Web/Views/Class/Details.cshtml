@@ -1,0 +1,82 @@
+﻿@model ZDSoft.TES.Domain.UserClass
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+    <link href="@Url.Content("~/Content/css/ViewPage.css")" rel="stylesheet" type="text/css" />
+}
+<div style=" margin-top:70px;">
+<p>
+    <h3 style=" font-size:16px;">@Html.ActionLink("返回列表", "Management", "Class")</h3>
+</p>
+<fieldset>
+    <legend>班级详细信息</legend>
+    <table cellpadding="0" cellspacing="0" class="dataGrid">
+        <tr>
+            <th>
+                班级名
+            </th>
+            <th>
+                系部
+            </th>
+            <th>
+                班级对应课程
+            </th>
+            <th>
+                对应的教师名
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(m => m.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(m => m.BeLongCollege.Name)
+            </td>
+            <td>
+                @if (Model.Curriculums == null || Model.Curriculums.Count == 0)
+                {
+                    <span>没有相关的数据！</span>
+                }
+                else
+                {
+                    string curriculumsList = "";
+                    foreach (var c in Model.Curriculums)
+                    {
+                        if (curriculumsList == "")
+                        {
+                            curriculumsList = c.Name;
+                        }
+                        else
+                        {
+                            curriculumsList = curriculumsList + "," + c.Name;
+                        }
+                    }
+                    @curriculumsList
+                }
+            </td>
+            <td>
+                @if (Model.Teachers == null || Model.Teachers.Count == 0)
+                {
+                    <span>没有相关的数据！</span>
+                }
+                else
+                {
+                    string teachersList = "";
+                    foreach (var t in Model.Teachers)
+                    {
+                        if (teachersList == "")
+                        {
+                            teachersList = t.Name;
+                        }
+                        else
+                        {
+                            teachersList = teachersList + "," + t.Name;
+                        }
+                    }
+                    @teachersList
+                }
+            </td>
+        </tr>
+    </table>
+</fieldset>
+</div>

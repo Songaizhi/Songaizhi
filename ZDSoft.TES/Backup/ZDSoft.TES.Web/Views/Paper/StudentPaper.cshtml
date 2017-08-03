@@ -1,0 +1,163 @@
+﻿@model List<ZDSoft.TES.Domain.ResultSelects>
+@{
+    Layout = null;
+    var temppaper = ViewBag.temppaper as ZDSoft.TES.Domain.TempPaperType;
+    var teacher = ViewBag.teacher as ZDSoft.TES.Domain.Teacher;
+    var student = ViewBag.student as ZDSoft.TES.Domain.Student;
+    var user = ViewBag.user as ZDSoft.TES.Domain.Users;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="@Url.Content("~/Content/css/default.css")" rel="stylesheet" type="text/css" />
+    <title>无标题文档</title>
+    <style type="text/css">
+        *
+        {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <div id="header">
+                <span style=" font-size:36px; color:Black;margin-left: 110px;">@temppaper.Name</span>
+            <table width="469" border="0" style="margin-left: 150px;">
+                <tr>
+                    <td width="76">
+                        教师姓名:
+                    </td>
+                    <td width="97">@teacher.Name
+                    </td>
+                    <td width="81">
+                        当前学生:
+                    </td>
+                    <td width="197">@student.Name
+                    </td>
+                </tr>
+                <tr>
+                    <td height="27">
+                        指导专业:
+                    </td>
+                    <td>
+                        @foreach (ZDSoft.TES.Domain.Curriculum cu in teacher.Curriculums)
+                        { 
+                            @cu.Name 
+                            @:&nbsp
+                                }
+                    </td>
+                    <td>
+                        班 级:
+                    </td>
+                    <td>@student.Classes.Name
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div style=" list-style: none; margin-left:40px;">
+        @{
+            int z = 1;
+            for (int i = 0; i <= temppaper.TempPaperTypeList.Count - 1; i++)
+            {
+                if (temppaper.TempPaperTypeList[i].Children == null)
+                {
+            <h2 class="heading">@z 、@temppaper.TempPaperTypeList[i].Name</h2>
+                               for (int k = 0; k <= temppaper.TempPaperTypeList[i].TempSelectsList.Count - 1; k++)
+                               {
+            <span style="float: left; margin-right: 10px; list-style: none;">
+                <input type="radio" name="@temppaper.TempPaperTypeList[i].ID" onclick="jisuan(@z,@temppaper.TempPaperTypeList[i].TempSelectsList[k].Proportion,'aaa')"/>
+                @temppaper.TempPaperTypeList[i].TempSelectsList[k].Number
+                @temppaper.TempPaperTypeList[i].TempSelectsList[k].Name
+            </span>
+           if (k == temppaper.TempPaperTypeList[i].TempSelectsList.Count - 1)
+           { <br />}
+                               }
+                               z++;
+                }
+
+                else
+                {
+                    if (temppaper.TempPaperTypeList[i].TempSelectsList.Count == 0)
+                    {
+
+                    }
+                    else
+                    {
+            <div id="archives" class="greennotes" style="list-style: none;">
+                <h2 class="heading">@z 、@temppaper.TempPaperTypeList[i].Name</h2>
+                <ul>
+                    @for (int k = 0; k <= temppaper.TempPaperTypeList[i].TempSelectsList.Count - 1; k++)
+                    {
+                        <li>
+                            <input type="radio" name="@temppaper.TempPaperTypeList[i].ID" onclick="jisuan(@z,@temppaper.TempPaperTypeList[i].TempSelectsList[k].Proportion,'@temppaper.TempPaperTypeList[i].TempSelectsList[k].Name','@temppaper.TempPaperTypeList[i].TempSelectsList[k].Number')"/>
+                            @temppaper.TempPaperTypeList[i].TempSelectsList[k].Number
+                            @temppaper.TempPaperTypeList[i].TempSelectsList[k].Name
+                        </li>
+                    }
+                </ul>
+                @{z++;}
+            </div>   
+                    }
+
+                }
+            }
+        }
+    </div>
+    <form action="StudentPaper?tid=@teacher.ID&&sid=@student.ID&&uid=@user.ID" method="post" onsubmit="return yanzheng()">
+    <div id="data" style="display: none;">
+        @for (int i = 0; i <= Model.Count - 1; i++)
+        {
+            <div>
+                @Html.TextBoxFor(m => m[i].Proportion)
+                @Html.TextBoxFor(m => m[i].Name)
+                @Html.TextBoxFor(m => m[i].Number)
+            </div>
+        }
+        <input type="text" id="shoufenshu" name="fenshu" />
+    </div>
+    <center><div style="width: 1024px; clear: both; display: block">
+        <input type="submit" value="提交" style=" width:40px; height:20px;"/></div></center>
+    </form>
+</body>
+</html>
+<script type="text/javascript">
+    var mycars = new Array();
+    for (var i = 0; i <= 9; i++) {
+        mycars[i] = 1;
+    }
+    function jisuan(x, y, z, k) {
+        mycars[Number(x - 1)] = y;
+        var zongfen = 0.15 * mycars[0] + 0.15 * mycars[1] + 0.10 * mycars[2] + 0.10 * mycars[3] + 0.05 * mycars[4] + 0.08 * mycars[5] + 0.10 * mycars[6] + 0.10 * mycars[7] + 0.10 * mycars[8] + 0.07 * mycars[9];
+        document.getElementById("shoufenshu").value = zongfen;
+        var getdatadiv = document.getElementById("data").getElementsByTagName("div");
+        var getduixiang = getdatadiv.item(x - 1).getElementsByTagName("input");
+        getduixiang.item(0).value = y;
+        getduixiang.item(1).value = z;
+        getduixiang.item(2).value = k;
+    }
+
+    function yanzheng() {
+        for (var i = 0; i <= 9; i++) {
+            var getdatadiv = document.getElementById("data").getElementsByTagName("div");
+            var getduixiang = getdatadiv.item(i).getElementsByTagName("input");
+            if (getduixiang.item(0).value == "" || getduixiang.item(0).value == null) {
+                alert("第" + Number(i + 1) + "题没选");
+                return false;
+            }
+            else if (getduixiang.item(1).value == "" || getduixiang.item(1).value == null) {
+                alert("第" + Number(i + 1) + "题没选");
+                return false;
+            }
+
+            else if (getduixiang.item(2).value == "" || getduixiang.item(2).value == null) {
+                alert("第" + Number(i + 1) + "题没选");
+                return false;
+            }
+        }
+
+        return true;
+    }
+</script>

@@ -1,0 +1,45 @@
+﻿@model ZDSoft.TES.Domain.Teacher
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+    <link href="@Url.Content("~/Content/css/ViewPage.css")" rel="stylesheet" type="text/css" />
+}
+<div style=" margin-top:70px;">
+<p>
+    <h3 style=" font-size:16px;">@Html.ActionLink("返回列表", "Management", "Teacher")</h3>
+</p>
+<br />
+<fieldset>
+    <legend>教师详细信息</legend>
+    <table cellpadding="0" cellspacing="0" class="dataGrid">
+        <tr>
+            <th>
+                教师名
+            </th>
+            <th>
+                工号
+            </th>
+            <th>
+                课程
+            </th>
+            <th>
+                对应的班级
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(m => m.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(m => m.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(m => m.Curriculums[0].Name)
+            </td>
+            <td>
+                @Html.DisplayFor(m => m.UserClasses[0].Name)
+            </td>
+        </tr>
+    </table>
+</fieldset>
+</div>
