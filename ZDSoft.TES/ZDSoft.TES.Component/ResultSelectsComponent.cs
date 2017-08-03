@@ -11,5 +11,6 @@ namespace ZDSoft.TES.Component
 {
     public class ResultSelectsComponent : BaseComponent<ResultSelects, ResultSelectsManager>, IResultSelectsService
     {
+        int a = 1;
     }
 }
